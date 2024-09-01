@@ -59,3 +59,4 @@ Dockerfile
 *.sql
 *.sqlite
 
+.env
