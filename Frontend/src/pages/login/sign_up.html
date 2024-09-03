@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierung</title>
+   <link rel="stylesheet" href="../../src/pages/css/style.css">
+</head>
+<body>
+    <div class="sign_up-container">
+        <h2>Sign Up</h2>
+        <form id="registrationForm">
+
+            <div class="form-group">
+                <label for="firstName">Vorname</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Vorname" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="lastName">Nachname</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Nachname" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="password">Passwort</label>
+                <input type="password" id="password" name="password" placeholder="Passwort" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="confirmPassword">Passwort bestätigen</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Passwort bestätigen" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="phone">Telefonnummer</label>
+                <input type="tel" id="phone" name="phone" placeholder="Telefonnummer">
+            </div>
+
+
+            <div class="form-group">
+                <label for="birthDate">Geburtsdatum</label>
+                <input type="date" id="birthDate" name="birthDate" required>
+            </div>
+
+
+            <button type="submit">Registrieren</button>
+        </form>
+        <p>Haben Sie bereits ein Konto? <a href="sign_in.html">Sign In</a></p>
+    </div>
+
+    <script src="../../src/pages/javascript/register.js"></script>
+</body>
+</html>
+

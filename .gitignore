@@ -1,2 +1,23 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
 .env
 
+# macOS
+.DS_Store
+
+# Log files
+*.log
+
+# Editor directories and files
+.idea/
+.vscode/
+*.iml
+
+# Cache and temp files
+.cache/
+tmp/
+
+# Python virtual environments
+venv/
