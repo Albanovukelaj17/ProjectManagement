@@ -1,6 +1,5 @@
+/* sign_in_style.css */
 
-
-/* General Body Styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -11,7 +10,6 @@ body {
     margin: 0;
 }
 
-/* Container Styling */
 .sign_up-container {
     background-color: #fff;
     padding: 20px 40px;
@@ -21,20 +19,17 @@ body {
     width: 300px;
 }
 
-/* Header Styling */
 h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
 }
 
-/* Form Group Styling */
 .form-group {
     margin-bottom: 15px;
     text-align: left;
 }
 
-/* Label Styling */
 label {
     display: block;
     margin-bottom: 5px;
@@ -42,7 +37,6 @@ label {
     color: #666;
 }
 
-/* Input Styling */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -57,7 +51,6 @@ input[type="date"] {
     font-size: 14px;
 }
 
-/* Button Styling */
 button {
     width: 100%;
     padding: 10px;
@@ -74,14 +67,12 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Paragraph Styling */
 p {
     margin-top: 15px;
     font-size: 14px;
     color: #666;
 }
 
-/* Link Styling */
 a {
     color: #007bff;
     text-decoration: none;
