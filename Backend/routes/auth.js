@@ -1,43 +1,35 @@
 const express = require('express');
-const router = express.Router(); // Create a new router instance
-
-// Import bcrypt if you haven’t already
+const router = express.Router();
 const bcrypt = require('bcrypt');
+const pool = require('../db');  // Import the database connection
 
-// Assuming you have a pool instance for your database
-const pool = require('../db'); // Adjust the path as needed
-
-// Define the route
+// Register a new user
 router.post('/register', async (req, res) => {
   const { firstName, lastName, email, password, phone, birthDate } = req.body;
 
   try {
-    console.log('Received data:', req.body);
+    // Check if the email is already in use
+    const existingUser = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (existingUser.rows.length > 0) {
+      return res.status(400).json({ message: 'User with this email already exists' });
+    }
 
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log('Password hashed successfully:', hashedPassword);
 
+    // Insert new user into the database
     const newUserQuery = `
       INSERT INTO users (first_name, last_name, email, password, phone, birth_date)
       VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
 
     const values = [firstName, lastName, email, hashedPassword, phone, birthDate];
-
-    console.log('Executing query:', newUserQuery, values);
-
     const result = await pool.query(newUserQuery, values);
 
-    console.log('Query result:', result.rows);
-
-    if (result.rows.length > 0) {
-      return res.status(201).json({ message: 'User registered successfully!' });
-    } else {
-      return res.status(500).json({ message: 'Failed to register user' });
-    }
+    return res.status(201).json({ message: 'User registered successfully!', user: result.rows[0] });
   } catch (err) {
-    console.error('Error during registration:', err);
-    res.status(500).json({ message: 'Server Error', error: err.message });
+    console.error('Error during registration:', err.message);
+    return res.status(500).json({ message: 'Server Error', error: err.message });
   }
 });
 
-module.exports = router; // Export the router instance
+module.exports = router;
