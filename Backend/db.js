@@ -1,20 +1,13 @@
 // db.js
-const { MongoClient } = require('mongodb');
-require('dotenv').config(); // Lädt die Umgebungsvariablen aus der .env-Datei
+const { Pool } = require('pg');
+require('dotenv').config();
 
-const uri = process.env.MONGO_URI;
+const pool = new Pool({
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT,
+});
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-async function connectDB() {
-  try {
-    await client.connect();
-    console.log("Connected to MongoDB");
-    return client.db(); // Optional: Du kannst hier die DB-Instanz zurückgeben
-  } catch (err) {
-    console.error("Failed to connect to MongoDB", err);
-    throw err; // Wichtig: Fehler sollten geworfen werden, damit sie behandelt werden können
-  }
-}
-
-module.exports = connectDB;
+module.exports = pool;
