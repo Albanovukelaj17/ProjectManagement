@@ -1,41 +1,47 @@
 document.getElementById('registrationForm').addEventListener('submit', async (event) => {
-  event.preventDefault(); // Prevent the form from submitting the traditional way
+    event.preventDefault(); // Prevent the default form submission
 
-  // Gather the form data
-  const formData = {
-    firstName: document.getElementById('firstName').value,
-    lastName: document.getElementById('lastName').value,
-    email: document.getElementById('email').value,
-    password: document.getElementById('password').value,
-    confirmPassword: document.getElementById('confirmPassword').value,
-    phone: document.getElementById('phone').value,
-    birthDate: document.getElementById('birthDate').value,
-  };
+    // Get form data
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const phone = document.getElementById('phone').value;
+    const birthDate = document.getElementById('birthDate').value;
 
-  // Validate password match
-  if (formData.password !== formData.confirmPassword) {
-    alert('Passwords do not match');
-    return;
-  }
-
-  // Send the data to the backend
-  try {
-    const response = await fetch('http://localhost:3000/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      alert('Registration successful!');
-      console.log(data);  // The returned user data from the server
-    } else {
-      alert('Registration failed');
+    if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
     }
-  } catch (err) {
-    console.error('Error:', err);
-  }
+
+    const data = {
+        firstName,
+        lastName,
+        email,
+        password,
+        phone,
+        birthDate
+    };
+
+    try {
+        const response = await fetch('http://localhost:3021/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('User registered successfully!');
+            window.location.href = 'sign_in.html';
+        } else {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.message}`);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong. Please try again.');
+    }
 });
