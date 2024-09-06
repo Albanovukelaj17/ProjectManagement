@@ -1,34 +1,34 @@
 const express = require('express');
 const path = require('path');
-const app = express();
-const projectsRoutes = require('./routes/projects'); // Import the routes
-
 const cors = require('cors');
-app.use(cors());
+const app = express();
 
+// Import routes
+const projectsRoutes = require('./routes/projects');
 const authRoutes = require('./routes/auth');
+
+// Middleware
+app.use(cors()); // Enable Cross-Origin requests
+
+// Middleware for parsing JSON and URL-encoded form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // This will handle form submissions
+
+// Serve static files (CSS, JS, etc.)
+app.use('/login', express.static(path.join(__dirname, '../Frontend/src/pages/login'))); // Serve static files like CSS and images
+app.use('/javascript', express.static(path.join(__dirname, '../Frontend/src/javascript'))); // Serve JavaScript files
+
+// Use routes for API requests
+app.use('/projects', projectsRoutes);
 app.use('/api', authRoutes);
 
-app.use(bodyParser.json());
-// Middleware for parsing JSON
-app.use(express.json());
-
-// Serve static files from the "Frontend/src/pages/css" directory
-app.use( '/login',express.static(path.join(__dirname, '../Frontend/src/pages/login')));
-
-// Serve static JavaScript files
-app.use('/javascript', express.static(path.join(__dirname, '../Frontend/src/javascript')));
-
-// Use the projects routes for API requests starting with /projects
-app.use('/projects', projectsRoutes);
-
-// Serve the sign-up HTML file at the specific route
+// Serve the sign-up HTML file
 app.get('/login/sign_up.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../Frontend/src/pages/login/sign_up.html'));
 });
 
 // Start the server
-const PORT = process.env.PORT || 3017;
+const PORT = process.env.PORT || 3018;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
