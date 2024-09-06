@@ -28,7 +28,7 @@ app.get('/login/sign_up.html', (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3023;
+const PORT = process.env.PORT || 3025;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

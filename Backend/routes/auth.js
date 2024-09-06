@@ -31,5 +31,36 @@ router.post('/register', async (req, res) => {
     return res.status(500).json({ message: 'Server Error', error: err.message });
   }
 });
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
+    try {
+        // Check if the user exists
+        const userQuery = 'SELECT * FROM users WHERE email = $1';
+        const userResult = await pool.query(userQuery, [email]);
+
+        if (userResult.rows.length === 0) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+
+        const user = userResult.rows[0];
+
+        // Compare the password
+        const validPassword = await bcrypt.compare(password, user.password);
+
+        if (!validPassword) {
+            return res.status(400).json({ message: 'Invalid email or password' });
+        }
+
+        // Login successful
+        res.json({
+            firstName: user.first_name,
+            lastName: user.last_name,
+            email: user.email
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+});
 module.exports = router;
