@@ -33,11 +33,16 @@ router.post('/register', async (req, res) => {
 });
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
+        console.log('Eingehende Login-Daten:', email, password); // Überprüfe, ob die Daten korrekt ankommen
+
 
     try {
         // Check if the user exists
         const userQuery = 'SELECT * FROM users WHERE email = $1';
         const userResult = await pool.query(userQuery, [email]);
+
+        console.log('Eingehende Login-Daten:', email, password); // Überprüfe, ob die Daten korrekt ankommen
+
 
         if (userResult.rows.length === 0) {
             return res.status(400).json({ message: 'Invalid email or password' });
