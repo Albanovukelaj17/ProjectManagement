@@ -13,7 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
     try {
         // Send the data to the backend
-        const response = await fetch('http://localhost:3025/api/login', { // Adjust port if necessary
+        const response = await fetch('http://localhost:3042/api/login', { // Adjust port if necessary
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
             const result = await response.json();
             alert(`Welcome, ${result.firstName}!`);
             // Optionally redirect the user after successful login
-            window.location.href = '/dashboard.html'; // Redirect to a dashboard or home page
+            window.location.href = '/main.html'; // Redirect to a dashboard or home page
             //to implement
         } else {
             const errorData = await response.json();

@@ -2,10 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Dashboard</title>
     <link rel="stylesheet" href="main_style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Project Management Dashboard</h1>
 
+        <!-- Project Overview Section -->
+        <section class="overview">
+            <h2>Projects Overview</h2>
+            <div class="overview-box">
+                <div class="box">
+                    <h3>Open Projects</h3>
+                    <p id="open-projects-count">Loading...</p>
+                    <button onclick="viewOpenProjects()">View Open Projects</button>
+                </div>
+                <div class="box">
+                    <h3>Closed Projects</h3>
+                    <p id="closed-projects-count">Loading...</p>
+                    <button onclick="viewClosedProjects()">View Closed Projects</button>
+                </div>
+                <div class="box">
+                    <h3>Total Projects</h3>
+                    <p id="total-projects-count">Loading...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add New Project Section -->
+        <section class="add-project">
+            <h2>Add New Project</h2>
+            <form id="newProjectForm">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName" name="projectName" required>
+
+                <label for="projectDescription">Description:</label>
+                <textarea id="projectDescription" name="projectDescription" required></textarea>
+
+                <label for="projectStatus">Status:</label>
+                <select id="projectStatus" name="projectStatus">
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+
+                <button type="submit">Create Project</button>
+            </form>
+        </section>
+
+        <div id="message"></div>
+
+        <!-- JavaScript to handle the project overview and new project creation -->
+
+    </div>
 </body>
 </html>

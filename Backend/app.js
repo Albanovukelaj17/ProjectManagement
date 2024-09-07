@@ -28,15 +28,15 @@ app.get('/login/sign_up.html', (req, res) => {
 });
 
 // Serve static files for the dashboard (CSS, JS, etc.)
-app.use('/dashboard', express.static(path.join(__dirname, '../Frontend/src/pages/dashboard')));
+app.use('/main_style.css', express.static(path.join(__dirname, '../Frontend/src/pages/dashboard/main_style.css')));
 
 // Serve the dashboard main.html
-app.get('/dashboard/main.html', (req, res) => {
+app.get('/main.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../Frontend/src/pages/dashboard/main.html'));
 });
 
 // Start the server
-const PORT = process.env.PORT || 3034;
+const PORT = process.env.PORT || 3042;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
