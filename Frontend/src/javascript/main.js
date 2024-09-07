@@ -1,7 +1,7 @@
 // On page load, fetch project data
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const response = await fetch('http://localhost:3034/api/projects'); // Adjust the URL for your backend
+        const response = await fetch('http://localhost:3043/api/projects'); // Adjust the URL for your backend
         const data = await response.json();
 
         // Update project counts
@@ -42,7 +42,7 @@ document.getElementById('newProjectForm').addEventListener('submit', async (even
     };
 
     try {
-        const response = await fetch('http://localhost:3034/api/projects', {
+        const response = await fetch('http://localhost:3045/api/new_project.html', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

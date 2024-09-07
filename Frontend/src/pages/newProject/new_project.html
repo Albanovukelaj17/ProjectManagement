@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Project</title>
+    <link rel="stylesheet" href="new_project_style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Create a New Project</h1>
+        <form id="newProjectForm">
+            <label for="projectName">Project Name:</label>
+            <input type="text" id="projectName" name="projectName" required>
 
+            <label for="projectDescription">Description:</label>
+            <textarea id="projectDescription" name="projectDescription" required></textarea>
+
+            <label for="projectStatus">Status:</label>
+            <select id="projectStatus" name="projectStatus" required>
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+            </select>
+
+            <button type="submit">Create Project</button>
+        </form>
+
+        <!-- Back to Dashboard -->
+        <button onclick="window.location.href='main.html'">Back to Dashboard</button>
+
+        <!-- Handle form submission with JavaScript -->
+        <script src="../../javascript/new_project.js"></script>
+    </div>
 </body>
 </html>
