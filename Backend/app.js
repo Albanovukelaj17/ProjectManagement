@@ -35,8 +35,17 @@ app.get('/main.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../Frontend/src/pages/dashboard/main.html'));
 });
 
+
+app.get('/newProject/new_project.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Frontend/src/pages/newProject/new_project.html'));
+});
+
+// Serve static files like CSS, JS, etc.
+app.use('/new_project_style.css', express.static(path.join(__dirname, '../Frontend/src/pages/newProject/new_project_style.css')));
+
+
 // Start the server
-const PORT = process.env.PORT || 3053;
+const PORT = process.env.PORT || 3082;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
